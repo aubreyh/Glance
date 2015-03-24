@@ -175,6 +175,9 @@ body {
 .left_text_width {
 	width: 100px;
 }
+.question_text_width {
+	width: 100%;
+}
 .icon-remove {
 	cursor: pointer;
 }
@@ -214,4 +217,11 @@ body {
 }
 #saveExampleButton{
 	margin-top: 10px;	
+}
+
+input[type=checkbox] {
+  transform: scale(1.5);
+
+  /* Webkit browsers*/
+  -webkit-transform: scale(1.5);
 }

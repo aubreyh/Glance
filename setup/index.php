@@ -42,7 +42,18 @@
 <div class="page">
 <div class="page-center-container">
   <div>
-    <div class="col-sm-6 col-md-2">
+    <div class="col-sm-6 col-md-6">
+      <div class="thumbnail">
+        <div id="videoPlayer">
+          <div id="player"></div>
+        </div>
+      </div>
+      Note: results are not real-time. </br>
+      Send workers to: <a href="url" style="font-size:11px;" id="urlToSendWorkers"></a></br>
+      For more detailed results: <a href="url" style="font-size:11px;" id="visToolUrl"></a>
+    </div>
+    
+        <div class="col-sm-6 col-md-2">
       <div class="thumbnail height-390">
         <form id="loadVideo" method="post">
           <input id="videoURL" name="videourl" class="form-control" placeholder="Video URL">
@@ -82,16 +93,7 @@
         </p>
       </div>
     </div>
-    <div class="col-sm-6 col-md-6">
-      <div class="thumbnail">
-        <div id="videoPlayer">
-          <div id="player"></div>
-        </div>
-      </div>
-      Note: results are not real-time. </br>
-      Send workers to: <a href="url" style="font-size:11px;" id="urlToSendWorkers"></a></br>
-      For more detailed results: <a href="url" style="font-size:11px;" id="visToolUrl"></a>
-    </div>
+    
     <div class="col-sm-6 col-md-3">
       <div class="col-sm-6 col-md-12" id="addLabels">
         <div class="thumbnail padding-bottom-12">

@@ -104,6 +104,15 @@ console.log("Expanding bar...");
 
 }
 
+function setup_question(id){
+  var popup = window.open("","popup","width=500,height=500");
+  popup.focus();
+  popup.document.open();
+  popup.document.writeln("<title>Setup</title>");
+  popup.document.writeln("<h2>Test</h2>");
+  popup.document.close();
+}
+
 function addBar(){
 	
 	var iframe  = '';
@@ -117,7 +126,19 @@ function addBar(){
 	var counter_new = parseInt(counter);
 	counter = counter_new+1;
 		
-	var content =  '<li id="vbar_'+counter+'" class="thumbnail"><table width="99%" id="table_'+counter+'"><tr><td colspan="3" width="100%" align="center"><span id="iframe_'+counter+'">'+iframe+'</span></td></tr><tr><td width="15%" align="center"><img class="icon-remove" src="images/remove_icon.png" onclick="remove_bar('+counter+')" />&nbsp&nbsp&nbsp&nbsp&nbsp<input placeholder="session" onKeyUp="refersh_content('+counter+',event)" class="left_text_width" align="center" id="'+counter+'_text" type="text" id="someid" value="'+label_value+'" /></td><td width="70%" align="center"><input type="button" id="zoomBtn_'+counter+'" value="&#x25BC;"/></td><td align="right" width="15%"><input type="button" onclick="render_new('+counter+',1)" class="btn btn-primary" value="Go" id="go_'+counter+'" /></td></tr></table></li>';
+	var content = '<li id="vbar_'+counter+'" class="thumbnail"><table width="40%" id="table_'+counter+'">\
+  <tr>\
+  <td colspan="3" width="100%" align="center"><span id="iframe_'+counter+'">'+iframe+'</span></td>\
+  </tr>\
+  <tr>\
+  <td width="35%" height="50" align="left"><img class="icon-remove" src="images/remove_icon.png" onclick="remove_bar('+counter+')" />&nbsp&nbsp&nbsp&nbsp&nbsp<input placeholder="session" onKeyUp="refersh_content('+counter+',event)" class="left_text_width" align="center" id="'+counter+'_text" type="text" id="someid" value="'+label_value+'" /></td>\
+  <td width="50%" height="50" align="center"><input type="button" id="zoomBtn_'+counter+'" value="&#x25BC;"/></td>\
+  <td width="15%" height="50" align="right"><input type="button" onclick="render_new('+counter+',1)" class="btn btn-primary" value="Go" id="go_'+counter+'" /></td>\
+  </tr>\
+  <tr>\
+  <td width="20%" height="50" align="left">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="button" onclick="setup_question('+counter+')" class="btn btn-info" value="Setup" id="setup_'+counter+'" /></td>\
+  </tr>\
+  </table></li>';
 		
 	$('#iframe_working').val(counter);
 	
