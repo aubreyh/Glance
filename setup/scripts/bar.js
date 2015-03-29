@@ -108,8 +108,7 @@ function setup_question(id){
   var popup = window.open("","popup","width=500,height=500");
   popup.focus();
   popup.document.open();
-  popup.document.writeln("<title>Setup</title>");
-  popup.document.writeln("<h2>Test</h2>");
+  popup.location.assign("popup.php");
   popup.document.close();
 }
 

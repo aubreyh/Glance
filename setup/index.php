@@ -227,7 +227,7 @@
     </div>
   </div>
   <div class="row marging-top">
-    <div class="col-md-6 col-lg-12"> <img src="images/plus.png" alt="Add Manually" class="cursor-pointer" onClick="addBar();" /> </div>
+    <div class="col-md-6 col-lg-12"> <img src="images/plus.png" alt="Add Manually" class="cursor-pointer" onClick="setup_question();" /> </div>
   </div>
 </div>
 
