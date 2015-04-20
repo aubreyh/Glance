@@ -4,13 +4,37 @@ body {
 	padding-top: 10px;
 }
 .page {
-	float: left;
+	/*float: left;*/
+	width: 100%;
 	width: 100%;
 }
 .page-center-container {
 	margin: auto;
 	width: 100%;
 }
+
+#upper {
+	clear: both;
+}
+
+#lower {
+	clear: both;
+}
+
+#firstCol {
+
+}
+
+#secondCol {
+
+max-height:410px;
+overflow:auto;
+}
+
+#thirdCol {
+
+}
+
 #play {
 	
 	margin-right: 2px;
@@ -31,7 +55,7 @@ body {
 	padding: 5px;
 }
 #timeSlider {
-	float: left;
+	/*float: left;*/
 	width: 97.75%;
 	/*	margin-left:40px;
 */	margin-top: 8px;
@@ -122,7 +146,8 @@ body {
 	text-align: right;
 }
 #cancelQueryButton {
-	width: 160px;
+	width: 80 px;
+  float: right;
 	background: rgb(202, 60, 60) !important;
 	color: white;
 	border-radius: 4px;
@@ -205,14 +230,14 @@ body {
 }
 .helper_with {
 	width: 100%;
-	float: left;
+	/*float: left;*/
 }
 .margin-auto_helper {
 	margin: auto;
 	width: 80px;
 }
 .left-align-set {
-	float: left;
+	/*float: left;*/
 	margin-left: 40%;
 }
 #saveExampleButton{

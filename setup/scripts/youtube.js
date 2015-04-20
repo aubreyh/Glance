@@ -37,21 +37,24 @@
           height: '390',
           width: '621',
           playerVars: {
-            'controls': '1',
-            'showinfo': '0',
-            'modestbranding': '1',
-            'rel': '0'
+            'autoplay': 0,
+            'controls': 1,
+            'showinfo': 0,
+            'modestbranding': 1,
+            'rel': 0
           },
           events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
           }
-        });
+        });        
       }
 
       // 4. The API will call this function when the video player is ready.
       function onPlayerReady(event) {
         //event.target.playVideo();
+        //alert(player.getPlayerState()); // video is cued
+
         $("#loadVideoButton").removeAttr("disabled");
       }
 
@@ -103,7 +106,7 @@
         clearInterval(timeTextVar);
         isScrolling = true;
         timeTextVar = setInterval(function(){
-          $("#playTime").html((Math.round(10 * ($( "#timeSlider" ).slider( "option", "value" ) - startTime))/10).toFixed(1) + "/" + (endTime - startTime));
+          //$("#playTime").html((Math.round(10 * ($( "#timeSlider" ).slider( "option", "value" ) - startTime))/10).toFixed(1) + "/" + (endTime - startTime));
         }, 100);
       }
 
@@ -113,16 +116,19 @@
       }
 
 
-      $(document).ready(function(){
 
+      $(document).ready(function(){
+        //When you want to load a new video just call player.loadVideoById(videoId);
+			
         $("#loadVideoButton").on("click", function(event){
           event.preventDefault();
 
-		  addBar();
+		  //addBar();
 
           // regex to get video ID from a variety of YouTube URLs
           var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-          var match = $("#videoURL").val().match(regExp);
+		  var url = $("#videoURL").val();
+          var match = url.match(regExp);
           if (match&&match[2].length==11){
             videoId = match[2];
             isVideoLoaded = true;
@@ -133,12 +139,14 @@
           }
 
           player.loadVideoById(videoId, 0);
-          $("#loadVideoButton").attr("disabled", "disabed");
+          //$("#loadVideoButton").attr("disabled", "disabed");
 
-          $("#chooseExampleButton").removeAttr("disabled");
+          //$("#chooseExampleButton").removeAttr("disabled");
 
           // endTime of 0 indicates video metadata not yet loaded. Metadata only loads when video starts playing
           endTime = 0;
+		 
+          add_playlist_entry(url);
         });
 
         $(function() {

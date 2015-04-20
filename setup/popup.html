@@ -1,0 +1,264 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Setup</title>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="css/popup.css">
+<script src="scripts/jquery1.9.js"></script>
+<script src="scripts/jquery_ui.js"></script>
+<script type="text/javascript" src="scripts/bar.js"></script>
+<script type="text/javascript" src="scripts/popup.js"></script>
+<link rel="stylesheet" href="css/pure-min.css">
+<link rel="stylesheet" href="../bootstrap-3.3.4-dist/css/bootstrap.css">
+<script src="../bootstrap-3.3.4-dist/js/bootstrap.js"></script>
+<script src="../bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+<script src="../bootstrap-3.3.4-dist/js/npm.js"></script>
+<!--
+  <script src="vis_tools/scripts/segvis.js"></script>
+  <link rel="stylesheet" href="vis_tools/css/vis.css" />
+  <link rel="stylesheet" href="vis_tools/css/style.css" /> -->
+
+</head>
+
+
+<body> <!--onload="selectVideos()"-->
+<div class="page">
+<div class="page-center-container">
+ <div id="firstCol" class="col-sm-6 col-md-6">
+ <h3 align="center">Setup</h3>
+<form id="config" method="get" action="submitData">
+<table>
+  <tr>
+   <td colspan="5"><h4>What behavior do you want to code?</h4></td>
+   </tr>
+   <tr>
+    <td width="40%" align="center" style="padding-right: 25px;">
+    <input placeholder="Behavior Name" class="form-control" align="center" id="action_label" type="text" />
+    </td>
+    <td align="right" colspan="2"><input placeholder="Request/Question sent to workers" class="form-control" id="action_description" type="text" /></td>   
+  </tr>
+  </table>
+  <table>
+  <tr>
+  <td colspan="5"><h4>What type of coding task is this?</h4></td>
+  </tr>
+  <tr>
+  <td><input type="radio" name="coding_task" value="binary" checked="checked" />Binary</td>
+  <td><img src="images/binary.png" alt="binary icon" style="width:30px;height:30px"></td>
+  <td><h5 style="padding-left:25px;">:&nbsp;Either the behavior exists or not.</h5></td>
+  </tr>
+    <tr>
+  <td><input type="radio" name="coding_task" value="category" />Category</td>
+  <td><img src="images/category.png" alt="category icon" style="width:30px;height:30px"></td>
+    <td><h5 style="padding-left:25px;">:&nbsp;Choose variations of this behavior.</h5></td>
+  </tr>
+
+      <tr>
+  <td style="padding-right:25px;"><input type="radio" name="coding_task" value="likert" />Likert Scale</td>
+    <td><img src="images/category.png" alt="category icon" style="width:30px;height:30px"></td>
+    <td><h5><h5 style="padding-left:25px;">:&nbsp;Judge the behavior on a scale.</h5></td>
+  </tr>
+  </table>
+
+<div>
+<div style="margin-left:75px; border:1px solid black;">
+  <table  style="width:100%">
+  <tr>
+  <td"><h5>Define variations of this behavior.</h5></td>
+  <td><img src="images/glyphicons-192-circle-minus.png" alt="Add Manually" class="cursor-pointer" onClick="decrement_choices();" />
+  </td>
+      <td>
+      <span>Choices</span> <br/>
+      <span><label for="choices">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0</label></span>
+    </td>
+    <td><img src="images/glyphicons-191-circle-plus.png" alt="Add Manually" class="cursor-pointer" onClick="increment_choices();" />
+  </td>
+  <tr id="variations">
+  </tr>
+  </tr>
+  </table>
+  </div>
+  </div>
+  <table>
+    <tr>
+  <td colspan="3"><h4>How should the video be segmented into coding tasks?</h4></td>
+  </tr>
+    <tr>
+  <td style="width:225px; padding-right:25px;"><p>Length of each video segment</p></td>
+  <td style="width:95px; padding-right:25px;"><input class="form-control" id="action_label" type="number" /></td>
+  <td style="width:110px;">
+    <select class="form-control"> 
+  <option selected="selected" disabled>Unit</option>
+  <option value="seconds">Seconds</option>
+  <option value="minutes">Minutes</option> </select>
+</td>
+  </tr>
+      <tr>
+  <td>Video Speed</td>
+  <td colspan="2">
+    <select class="form-control"> <!--  <select class="form-control" style="width: 135px">-->
+  <option selected="selected" disabled>Speed</option>
+  <option value="minutes">2x</option>
+<option value="seconds">3x</option>
+<option value="seconds">4x</option> </select>
+</td>
+
+  </tr>
+  
+<tr>
+  <td>Repeatable</td>
+
+      <td><input type="radio" name="repeatable" value="yes" />Yes</td>
+      <td>   <input type="radio" name="repeatable" value="no" />No</td>
+</td>
+
+  </tr> 
+  
+  
+        <tr>
+  <td>Coding Format</td>
+  <td colspan="2">
+    <select class="form-control"  align="right"> <!--  <select class="form-control" style="width: 135px">-->
+  <option selected="selected" disabled>Format</option>
+  <option value="minutes">Interval</option>
+<option value="seconds">Occurrence</option>
+<option value="seconds">Whole Segment</option></select>
+</td>
+
+  </tr>
+  
+<table>
+<tr>
+   <td>
+    <select class="form-control"  align="right"> <!--  <select class="form-control" style="width: 135px">-->
+  <option selected="selected" disabled>&#x2751;</option>
+  <option value="minutes">All</option>
+<option value="seconds">None</option> </select>
+</td>
+</tr>
+</table>
+<table id="videos_popup" >
+     <tbody>
+     </tbody>
+  </table>
+  </tr>
+</table>
+</form>
+  </div> <!--end first col-->
+  
+  
+  <div id="secondCol" class="col-sm-4 col-md-4">
+  <h3 align="center">Preview</h3>
+  </div> <!--end second col-->
+  </div>
+</body>
+</html>
+
+
+<!--OLD CODE-->
+<!--
+
+<body onload="selectVideos()">
+<div class="page">
+<h3 align="center">Setup</h3>
+<div class="page-center-container">
+  <div>
+
+<table style="margin-right:10px">
+  <tr>
+    <td height="50" width="15%"><strong>Action:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="10%" align="center">
+    <input placeholder="Label" class="form-control" align="center" id="action_label" type="text" />
+    </td>
+    <td align="right" colspan="4"><input placeholder="Description" class="form-control" style="width: 225px" id="action_description" type="text" /></td>   
+  </tr>
+  <tr>
+    <td><strong>Segment:</strong></td>
+    <td height="50">
+      <select id="segment_dropdown" class="form-control" style="width: 155px">
+        <option selected="selected" disabled>How to segment</option>
+        <option value="partition">Partition</option>
+        <option value="exist">Exist</option>
+        <option value="segmented">Segmented</option>
+      </select>
+    </td>
+  <td align="right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Type:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td height="50" align="right">
+  <div>
+  <select class="form-control" style="width: 135px">
+  <option selected="selected" disabled>Select a type</option>
+  <option selected="selected" disabled>Select a type</option>
+  <option value="binary">Binary</option>
+  <option value="category">Category</option>
+  <option value="likert">Likert</option>
+</select>
+</div>
+</td>
+  </tr>
+  
+
+
+<tr>
+
+  <td height="50"><strong>Example:</strong></td>
+
+
+
+  <td><input id="exampleCheckbox" type="checkbox" onchange="show_hide('exampleCheckbox',['exampleButtons','exampleImage'])" name="example" value="example"><br></td>
+
+  </tr>
+  
+  
+  <tr>
+  <td>
+  <div id="exampleButtons" style="display: none;" align="right">
+  <form>
+  <input type="radio" name="example" value="image" checked>Image
+  <br>
+  <input type="radio" name="example" value="video">Video&nbsp&nbsp
+  </form> 
+  </div>
+  </td>
+  <td colspan="4" align="right">
+   <img id="exampleImage" src="images/smile.png" alt="Smiley face" height="85" width="135" style="display: none;"> 
+  </td>
+</tr>
+  
+
+  <tr>
+    <td colspan="4">
+      <strong>Apply to:</strong>
+      <br>
+      <br>
+  <div>
+  <table id="videos_popup" width="100%">
+     <tbody>
+     </tbody>
+  </table>
+  </div>
+  </td>
+  </tr>
+ 
+  <tr>
+<td>
+<img id="videoImage" align="right" src="images/smile.png" alt="Smiley face" height="85" width="135" style="display: none;"> 
+</td>
+
+  </tr>
+    <tr>
+  <td colspan="2" width="20%" height="50" align="right">
+    <input type="button" onclick="saveSetup()" class="btn btn-primary" value="Save" id="save_question" />
+    </td>
+  <td colspan="2" height="50" align="right">
+    <input type="button" onclick="setupAdvanced()" class="btn btn-link" value="Show Advanced Options" id="adv_" />
+  </td>
+  </tr>
+</table>
+  </div>
+  </div>
+  </div>
+</body>
+</html>
+-->

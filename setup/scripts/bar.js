@@ -104,26 +104,15 @@ console.log("Expanding bar...");
 
 }
 
-function setup_question(id){
-  var popup = window.open("","popup","width=500,height=500");
-  popup.focus();
-  popup.document.open();
-  popup.location.assign("popup.php");
-  popup.document.close();
-}
-
 function addBar(){
-	
+	//alert('called addBar')
 	var iframe  = '';
 	var height = 60;
 	var value = '';
-	var counter = $('#iframe_working').val();
+	var counter = getQuestionId();
 	var label_value = '';
 		
 	iframe = '';
-	
-	var counter_new = parseInt(counter);
-	counter = counter_new+1;
 		
 	var content = '<li id="vbar_'+counter+'" class="thumbnail"><table width="40%" id="table_'+counter+'">\
   <tr>\
@@ -135,7 +124,7 @@ function addBar(){
   <td width="15%" height="50" align="right"><input type="button" onclick="render_new('+counter+',1)" class="btn btn-primary" value="Go" id="go_'+counter+'" /></td>\
   </tr>\
   <tr>\
-  <td width="20%" height="50" align="left">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="button" onclick="setup_question('+counter+')" class="btn btn-info" value="Setup" id="setup_'+counter+'" /></td>\
+  <td width="20%" height="50" align="left">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="button" onclick="setup_question()" class="btn btn-info" value="Setup" id="setup_'+counter+'" /></td>\
   </tr>\
   </table></li>';
 		

@@ -10,6 +10,7 @@
 <script src="scripts/jquery1.9.js"></script>
 <script src="scripts/jquery_ui.js"></script>
 <script src="../utils/gup.js"></script>
+<script src="scripts/main.js"></script>
 <script src="scripts/addLabel.js"></script>
 <script src="scripts/bar.js"></script>
 <script src="scripts/displaySegments.js"></script>
@@ -26,7 +27,6 @@
 
 </head>
 <?php
-
 	function get_url(){
 
 		if(isset($_POST['videourl'])){
@@ -34,11 +34,88 @@
 			return $videourl;
 		}
 	}
-
-
 ?>
 
 <body>
+<div id="main" class="page">
+<div id="upper" class="page-center-container">
+    <div id="firstCol" class="col-sm-6 col-md-6">
+      <div class="thumbnail">
+        <div id="videoPlayer">
+          <div id="player"></div>
+        </div>
+      </div>
+    </div> <!--end first column -->
+    
+
+     <div id="secondCol" class="col-sm-6 col-md-6">
+     <div class="thumbnail">
+
+     <!--     <form id="loadVideo" method="post">
+  <ul>
+    <li id="loadVideoButton">Click me</li>
+  </ul>
+     <input id="videoURL" name="videourl" class="form-control" placeholder="Video URL">
+    
+     </form>
+     -->
+     <table id="video_panel" class="video_table" width="100%">
+     <tbody>
+	<tr>
+    </tr>
+     <tr>
+       <td colspan="3" height="75" align="center">
+    <input type="button" onclick="add_video()" class="btn btn-info" value="Add Video" id="add_video" />
+    </td>
+     </tr>
+     <table width="100%">
+     <tr id="hidden_row" style="display: none;">
+     <td><input placeholder="Video URL" class="form-control" id="videoURL" width="60%" name="videourl" type="text" /></td> 
+<td class="cell_button" align="right"><input type="submit" value="Load" id="loadVideoButton" class="btn btn-primary"></td>
+</tr>
+     </table>
+     </tbody>
+     </table>
+     </div> 
+     </div> <!--end second column -->
+    
+
+
+</div> <!--end upper row -->
+
+
+<!--lower portion of page -->
+<div id="lower" class="page-center-container">
+  <div class="row marging-top">
+    <div class="col-md-12 col-lg-12 margin-top">
+      <div id="timeSlider"></div>
+      <div id="slider-container"></div>
+      <div id="segments"></div>
+      <script src="scripts/youtube.js"></script>
+    </div>
+  </div>
+  <div class="row marging-top">
+    <div class="col-md-12 col-lg-12 margin-top">
+      <form class="pure-form pure-form-aligned" onSubmit="return false">
+        <ul class="paddingnone" id="bars_maker">
+        </ul>
+        <input type="hidden" id="iframe_working" value="0" />
+        <input type="hidden" id="youtube_loaded" value="0" />
+      </form>
+    </div>
+  </div>
+  <div class="row marging-top">
+    <div class="col-md-12 col-lg-12"> <img src="images/plus.png" alt="Add Manually" class="cursor-pointer" onClick="setup_question();" /> </div>
+  </div>
+</div> <!--end lower row -->
+
+</div> <!--end main -->
+</body>
+</html>
+
+
+<!--OLD CODE-->
+<!--<body>
 <div class="page">
 <div class="page-center-container">
   <div>
@@ -166,7 +243,7 @@
                   <input id="sessionOverride" value="">
                 </div>
               </div> -->
-            </div>
+<!--            </div>
             <input type="submit" value="Get Labels!" id="getLabelsButton" disabled = "disabled" class="btn btn-danger">
           </form>
         </div>
@@ -199,7 +276,7 @@
             <span id='tabspan" + num_tabs + "'> </span>
           </form>
         </div> -->
-        <button id = "cancelQueryButton" class="btn btn-danger">Deactivate session</button>
+ <!--       <button id = "cancelQueryButton" class="btn btn-danger">Deactivate session</button>
       </div>
     </div>
     <div class="col-sm-6 col-md-1">
@@ -239,5 +316,5 @@
     5. To view segments or raise the sample percentage, click on a session's tab.
 </div> -->
 
-</body>
-</html>
+<!--</body>
+</html>-->
