@@ -250,3 +250,24 @@ input[type=checkbox] {
   /* Webkit browsers*/
   -webkit-transform: scale(1.5);
 }
+
+
+table#video_panel {
+    border-collapse: collapse;   
+}
+#video_panel tr {
+    background-color: #eee;
+    border-top: 1px solid #fff;
+}
+#video_panel tr:hover {
+    background-color: #ccc;
+}
+#video_panel th {
+    background-color: #fff;
+}
+#video_panel th, #video_panel td {
+    padding: 3px 5px;
+}
+#video_panel td:hover {
+    cursor: pointer;
+}

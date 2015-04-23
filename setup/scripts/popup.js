@@ -19,6 +19,55 @@ function selectVideos() {
     // }
 }
 
+$( document ).ready(function() {
+$('input:radio[name="coding_task"]').change(function(){
+    if($(this).val() === 'category'){
+       document.getElementById("category_options").style.display = "table-row";	
+    }
+	else if ($(this).val() === 'binary'){
+		document.getElementById("category_options").style.display = "none";
+	}
+	else {
+		document.getElementById("category_options").style.display = "none";
+	}
+});
+});
+
+
+function increment_choices() {
+	
+  var num_variations = parseInt($("#choices").text()); 
+  //alert(num_variations);
+   
+  num_variations += 1;
+  newRow = "<tr id='variation"+num_variations+"_row'>" +
+  "<td>" +
+  "<input type='radio' name='category_variation' value='variation"+num_variations+"_selector'>Variation "+num_variations+" :" +
+  "</td>" +
+  
+ "<td colspan='3'>" +
+ "<input placeholder='Description' class='form-control' id='variation"+num_variations+"_description' type='text' />" +
+ "</td>" +
+  "</tr>";
+ 
+ $("#variations").append(newRow)
+ $('#choices').text(num_variations);
+}
+
+function decrement_choices() {
+  
+  var num_variations = parseInt($("#choices").text()); 
+  //alert(num_variations);
+   
+  if(num_variations > 0){
+	  var row_name = "#variation"+num_variations+"_row";
+	 
+	 $(row_name).remove();
+	  num_variations -= 1;
+	 $('#choices').text(num_variations);
+  }
+}
+
 function setupAdvanced(){
    top.window.opener.addBar();
    self.close();

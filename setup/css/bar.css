@@ -75,3 +75,22 @@ ul {
 	font-family: "Arial";
 	font-size: 12pt;
 }
+
+table.video_table td{
+   height: 50px;
+}
+
+.cell_button {
+  text-align:right;
+}
+
+#playlist {
+    display:table;
+}
+#playlist li{
+    cursor:pointer;
+    padding:8px;
+}
+#playlist li:hover{
+    color:blue;                        
+}

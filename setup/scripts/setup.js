@@ -1,6 +1,16 @@
 var videos = new Array();
 //videos[0]=[""]; //initialize the video map
 
+
+$( document ).ready(function() {
+	$("#video_playlist").on("click", "tr.entry", function(){
+		var href = $(this).find("a").attr("href");
+		///alert(href);
+        var url = href.split("=");
+		loadVideo(url[1]);   
+	});
+});
+
 function setup_question(){
   var w = screen.width * .75;
   var h = screen.height * .75;
@@ -26,24 +36,29 @@ function getNumVideos(){
 function add_video(){
    document.getElementById("hidden_row").style.display = "table-row";	
 }
-	
+
+function add_playlist(){
+   alert('add playlist');
+}
+
 function add_playlist_entry(url) {
   document.getElementById("hidden_row").style.display = "none";
   var counter = videos.length + 1;
   
   //if(counter <= 5) {
   
-  newRow = "<tr>" +
-  "<form id='loadVideo' method='post'>" +
+  
+  newRow = "<tr class='entry'>" +
+  "<td><a href="+url+"></a></td>" +
   "<td style='height:60px'><img src='images/image.png' alt='Video Thumbnail' height='50' width='50'></td>" +
   "<td>"+
   "<span class='name'>"+url+"</span><br/>" +
   "<span class='subtext'>Description</span>" +
-  "</td>"
-  "</form>" +
+  "</td>" +
   "</tr>";
 
-  $('#video_panel > tbody > tr').eq(counter-1).before(newRow);
+  //$('#playlist > tbody > tr').eq(counter-1).before(newRow);
+  $("#video_playlist").append(newRow)
   videos.push("");
   // }
   // else{

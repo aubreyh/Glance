@@ -114,7 +114,16 @@
         clearInterval(timeTextVar);
         player.seekTo(ui.value);
       }
+	  
+	  function loadVideo(videoId) {
+		  player.loadVideoById(videoId, 0);
+          //$("#loadVideoButton").attr("disabled", "disabed");
 
+          //$("#chooseExampleButton").removeAttr("disabled");
+
+          // endTime of 0 indicates video metadata not yet loaded. Metadata only loads when video starts playing
+          endTime = 0;
+	  }
 
 
       $(document).ready(function(){
@@ -137,16 +146,9 @@
             alert("Not a valid YouTube URL.");
             return false;
           }
-
-          player.loadVideoById(videoId, 0);
-          //$("#loadVideoButton").attr("disabled", "disabed");
-
-          //$("#chooseExampleButton").removeAttr("disabled");
-
-          // endTime of 0 indicates video metadata not yet loaded. Metadata only loads when video starts playing
-          endTime = 0;
 		 
           add_playlist_entry(url);
+		  loadVideo(videoId);
         });
 
         $(function() {

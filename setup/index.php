@@ -10,7 +10,7 @@
 <script src="scripts/jquery1.9.js"></script>
 <script src="scripts/jquery_ui.js"></script>
 <script src="../utils/gup.js"></script>
-<script src="scripts/main.js"></script>
+<script src="scripts/setup.js"></script>
 <script src="scripts/addLabel.js"></script>
 <script src="scripts/bar.js"></script>
 <script src="scripts/displaySegments.js"></script>
@@ -59,22 +59,33 @@
     
      </form>
      -->
-     <table id="video_panel" class="video_table" width="100%">
+  
+ 
+     <table id="video_panel" width="100%">
+     <tbody id="video_playlist">
+
+    </tbody>
+    </table>
+
+
+    
+    <table id="video_buttons" width="100%">
      <tbody>
-	<tr>
-    </tr>
      <tr>
        <td colspan="3" height="75" align="center">
     <input type="button" onclick="add_video()" class="btn btn-info" value="Add Video" id="add_video" />
+        <input type="button" onclick="add_playlist()" class="btn btn-default" value="Add Playlist" id="add_playlist" />
     </td>
+
      </tr>
+     
+     </tbody>
+     </table>
      <table width="100%">
      <tr id="hidden_row" style="display: none;">
      <td><input placeholder="Video URL" class="form-control" id="videoURL" width="60%" name="videourl" type="text" /></td> 
 <td class="cell_button" align="right"><input type="submit" value="Load" id="loadVideoButton" class="btn btn-primary"></td>
 </tr>
-     </table>
-     </tbody>
      </table>
      </div> 
      </div> <!--end second column -->
