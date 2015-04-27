@@ -1,10 +1,11 @@
 function selectVideos() {
-  // var selectedVideo = top.window.opener.getVideoId();
+  //var selectedVideo = top.window.opener.getVideoId();
+  //alert(selectedVideo);
+  var counter = top.window.opener.getNumVideos();
+  //document.getElementById("videos_popup").style.display = "none";
   
-  // var counter = top.window.opener.getNumVideos();
-    
-  // for (var i=0; i < counter; i++) {
-    // var videoNum = i+1;
+  for (var i=0; i < counter; i++) {
+     var videoNum = i+1;
     // var newRow;
    
     // if (videoNum == selectedVideo){
@@ -12,59 +13,82 @@ function selectVideos() {
       // newRow = "<tr><td><input type='checkbox' value='video"+videoNum+"' checked></td>"        
     // }
     // else {
-        // newRow = "<tr><td><input type='checkbox' value='video"+videoNum+"'></td>"
-    // }
-    // newRow += "<td><label>Video "+videoNum+"</label></td></tr>";
-    // $("#videos_popup tbody").append(newRow);
-    // }
+		
+    var newRow = "<tr><td><input type='checkbox' name'video_checkboxes' value='video"+videoNum+"'></td><td><label>Video "+videoNum+"</label></td></tr>";
+    $("#videos_popup tbody").append(newRow);
+   }
+   
 }
 
 $( document ).ready(function() {
+	selectVideos();
 $('input:radio[name="coding_task"]').change(function(){
     if($(this).val() === 'category'){
        document.getElementById("category_options").style.display = "table-row";	
+	   document.getElementById("likert_options").style.display = "none";
     }
 	else if ($(this).val() === 'binary'){
 		document.getElementById("category_options").style.display = "none";
+		document.getElementById("likert_options").style.display = "none";
 	}
 	else {
+		document.getElementById("likert_options").style.display = "table-row";
 		document.getElementById("category_options").style.display = "none";
 	}
 });
+
+
+$('select[name="video_selection"]').change(function(){
+    //alert('all selected');
+    if ($(this).val() == "all") {
+		
+	$(':checkbox').each(function() {
+          this.checked = true;
+      });
+	}
+	else if ($(this).val() == "none") {
+	$(':checkbox').each(function() {
+          this.checked = false;
+      });
+	}
+    
 });
+}); //end document ready
 
 
-function increment_choices() {
-	
-  var num_variations = parseInt($("#choices").text()); 
+function increment_choices(type) {
+  var table_name = '#variations_' + type;
+  var element = "#choices_" + type;
+  var num_variations = parseInt($(element).text()); 
   //alert(num_variations);
    
   num_variations += 1;
-  newRow = "<tr id='variation"+num_variations+"_row'>" +
+  newRow = "<tr id='variation"+type+num_variations+"_row'>" +
   "<td>" +
-  "<input type='radio' name='category_variation' value='variation"+num_variations+"_selector'>Variation "+num_variations+" :" +
+  "<input type='radio' name='category_variation' value='variation"+type+num_variations+"_selector'>Variation "+num_variations+" :" +
   "</td>" +
   
  "<td colspan='3'>" +
- "<input placeholder='Description' class='form-control' id='variation"+num_variations+"_description' type='text' />" +
+ "<input placeholder='Description' class='form-control' id='variation"+type+num_variations+"_description' type='text' />" +
  "</td>" +
   "</tr>";
  
- $("#variations").append(newRow)
- $('#choices').text(num_variations);
+ $(table_name).append(newRow)
+ $(element).text(num_variations);
 }
 
-function decrement_choices() {
+function decrement_choices(type, minimum) {
   
-  var num_variations = parseInt($("#choices").text()); 
+  var element = "#choices_" + type;
+  var num_variations = parseInt($(element).text()); 
   //alert(num_variations);
    
-  if(num_variations > 0){
-	  var row_name = "#variation"+num_variations+"_row";
+  if(num_variations > minimum){
+	  var row_name = "#variation"+type+num_variations+"_row";
 	 
 	 $(row_name).remove();
 	  num_variations -= 1;
-	 $('#choices').text(num_variations);
+	 $(element).text(num_variations);
   }
 }
 
@@ -75,7 +99,7 @@ function setupAdvanced(){
 
 
 function saveSetup() {
-  alert("called function");
+  //alert("called function");
   //questionNum = top.window.opener.getQuestionId();
   //alert(top.window.opener.getVideoId());
   //alert(top.window.opener.getQuestionId())
@@ -101,8 +125,8 @@ function saveSetup() {
         // }
     // });
          
-   //top.window.opener.addBar();
-   //self.close();
+   top.window.opener.addBar();
+   self.close();
 }
 
 function show_hide(id, elements) {

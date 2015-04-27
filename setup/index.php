@@ -1,7 +1,6 @@
 <!doctype html>
 
-<html lang="en">
-<head>
+<html lang="en"><head>
 <meta charset="utf-8" />
 <title>End-User Setup</title>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
@@ -10,6 +9,7 @@
 <script src="scripts/jquery1.9.js"></script>
 <script src="scripts/jquery_ui.js"></script>
 <script src="../utils/gup.js"></script>
+<script type="text/javascript" src="scripts/shared.js"></script>
 <script src="scripts/setup.js"></script>
 <script src="scripts/addLabel.js"></script>
 <script src="scripts/bar.js"></script>

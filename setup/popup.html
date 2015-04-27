@@ -8,8 +8,9 @@
 <link rel="stylesheet" type="text/css" href="css/popup.css">
 <script src="scripts/jquery1.9.js"></script>
 <script src="scripts/jquery_ui.js"></script>
-<script type="text/javascript" src="scripts/bar.js"></script>
+<script type="text/javascript" src="scripts/shared.js"></script>
 <script type="text/javascript" src="scripts/popup.js"></script>
+<script type="text/javascript" src="scripts/bar.js"></script>
 <link rel="stylesheet" href="css/pure-min.css">
 <link rel="stylesheet" href="../bootstrap-3.3.4-dist/css/bootstrap.css">
 <script src="../bootstrap-3.3.4-dist/js/bootstrap.js"></script>
@@ -35,7 +36,7 @@
    </tr>
    <tr>
     <td width="40%" align="center" style="padding-right: 25px;">
-    <input placeholder="Behavior Name" class="form-control" align="center" id="action_label" type="text" />
+    <input placeholder="Behavior Name" class="form-control" align="center" id="behavior_label" type="text" />
     </td>
     <td align="right" colspan="2"><input placeholder="Request/Question sent to workers" class="form-control" id="action_description" type="text" /></td>   
   </tr>
@@ -58,36 +59,71 @@
       <tr>
   <td style="padding-right:25px;"><input type="radio" name="coding_task" value="likert" />Likert Scale</td>
     <td><img src="images/category.png" alt="category icon" style="width:30px;height:30px"></td>
-    <td><h5><h5 style="padding-left:25px;">:&nbsp;Judge the behavior on a scale.</h5></td>
+    <td><h5 style="padding-left:25px;">:&nbsp;Judge the behavior on a scale.</h5></td>
   </tr>
   </table>
 
-<div>
+
 <div id="category_options" style="margin-left:75px; border:1px solid black; display: none;">
-  <table id="variations">
+  <table id="variations_category">
   <tr>
   <td><h5>Define variations of this behavior.</h5></td>
-  <td><img src="images/glyphicons-192-circle-minus.png" alt="Add Manually" class="cursor-pointer" onClick="decrement_choices();" />
+  <td><img src="images/glyphicons-192-circle-minus.png" alt="Add Manually" class="cursor-pointer" onClick="decrement_choices('category', 0);" />
   </td>
       <td>
       <span>Choices</span> <br/>
-      <span><label id="choices" for="choices">0</label></span>
+      <span><label id="choices_category" for="choices_category">0</label></span>
     </td>
-    <td><img src="images/glyphicons-191-circle-plus.png" alt="Add Manually" class="cursor-pointer" onClick="increment_choices();" />
+    <td><img src="images/glyphicons-191-circle-plus.png" alt="Add Manually" class="cursor-pointer" onClick="increment_choices('category');" />
   </td>
   </tr>
 
 
   </table>
   </div>
+  
+  <div id="likert_options" style="margin-left:75px; border:1px solid black; display: none;">
+  <table id="variations_likert">
+  <tr>
+  <td><h5>Provide guidance for Likert scale.</h5></td>
+  <td><img src="images/glyphicons-192-circle-minus.png" alt="Add Manually" class="cursor-pointer" onClick="decrement_choices('likert',2);" />
+  </td>
+      <td>
+      <span>Choices</span> <br/>
+      <span><label id="choices_likert" for="choices_likert">2</label></span>
+    </td>
+    <td><img src="images/glyphicons-191-circle-plus.png" alt="Add Manually" class="cursor-pointer" onClick="increment_choices('likert');" />
+  </td>
+  </tr>
+  
+  
+<tr id='variationlikert1_row'>
+<td>
+<input type='radio' name='category_variation' value='variationlikert1_selector'>Variation 1 :</td>
+<td colspan='3'>
+<input placeholder='Description' class='form-control' id='variationlikert1_description' type='text' />
+</td>
+</tr>
+<tr id='variationlikert2_row'>
+<td>
+<input type='radio' name='category_variation' value='variationlikert2_selector'>Variation 2:</td>
+<td colspan='3'>
+<input placeholder='Description' class='form-control' id='variationlikert2_description' type='text' />
+</td>
+</tr>
+  
+</table>
   </div>
+  
+  
+  
   <table>
     <tr>
   <td colspan="3"><h4>How should the video be segmented into coding tasks?</h4></td>
   </tr>
     <tr>
   <td style="width:225px; padding-right:25px;"><p>Length of each video segment</p></td>
-  <td style="width:95px; padding-right:25px;"><input class="form-control" id="action_label" type="number" /></td>
+  <td style="width:95px; padding-right:25px;"><input class="form-control" id="video_length" type="number" /></td>
   <td style="width:110px;">
     <select class="form-control"> 
   <option selected="selected" disabled>Unit</option>
@@ -112,7 +148,7 @@
 
       <td><input type="radio" name="repeatable" value="yes" />Yes</td>
       <td>   <input type="radio" name="repeatable" value="no" />No</td>
-</td>
+
 
   </tr> 
   
@@ -120,7 +156,7 @@
         <tr>
   <td>Coding Format</td>
   <td colspan="2">
-    <select class="form-control"  align="right"> <!--  <select class="form-control" style="width: 135px">-->
+    <select class="form-control"> <!--  <select class="form-control" style="width: 135px">-->
   <option selected="selected" disabled>Format</option>
   <option value="minutes">Interval</option>
 <option value="seconds">Occurrence</option>
@@ -128,23 +164,35 @@
 </td>
 
   </tr>
+</table>  
   
 <table>
+<tbody>
 <tr>
    <td>
-    <select class="form-control"  align="right"> <!--  <select class="form-control" style="width: 135px">-->
+  <select name="video_selection" class="form-control"  align="right"> <!--  <select class="form-control" style="width: 135px">-->
   <option selected="selected" disabled>&#x2751;</option>
-  <option value="minutes">All</option>
-<option value="seconds">None</option> </select>
+  <option value="all">All</option>
+<option value="none">None</option> </select>
 </td>
 </tr>
+<!--
+<tr>
+<td><input type='checkbox' name'video_checkboxes' value='video1'></td>
+<td><label>Video 1</label></td>
+</tr>
+<tr>
+<td><input type='checkbox' name'video_checkboxes' value='video2"'></td>
+<td><label>Video 2</label></td>
+</tr>
+-->
+</tbody>
 </table>
-<table id="videos_popup" >
-     <tbody>
-     </tbody>
-  </table>
-  </tr>
+<table id="videos_popup">
+<tbody>
+</tbody>
 </table>
+
 </form>
   </div> <!--end first col-->
   
@@ -152,6 +200,7 @@
   <div id="secondCol" class="col-sm-4 col-md-4">
   <h3 align="center">Preview</h3>
   </div> <!--end second col-->
+  </div>
   </div>
 </body>
 </html>

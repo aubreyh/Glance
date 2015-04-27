@@ -1,6 +1,5 @@
-var videos = new Array();
+var my_videos = new Array();
 //videos[0]=[""]; //initialize the video map
-
 
 $( document ).ready(function() {
 	$("#video_playlist").on("click", "tr.entry", function(){
@@ -9,29 +8,24 @@ $( document ).ready(function() {
         var url = href.split("=");
 		loadVideo(url[1]);   
 	});
+	
 });
 
 function setup_question(){
   var w = screen.width * .75;
-  var h = screen.height * .75;
+  var h = screen.height;
   var left = Number((screen.width/2)-(w/2));
   //var above = Number((screen.height/2)-(h/2));
-  popup_window = window.open("popup.html","popup","width="+w+",height="+h+", top=0, left="+left+",scrollbars=yes");
+ // popup_window = window.open("popup.html","popup","width="+w+",height="+h+", top=0, left="+left+",scrollbars=yes");
+  //selectVideos();
+    popup = window.open("popup.html","popup","width="+w+",height="+h+", top=0, left="+left+",scrollbars=yes");
+    popup.focus();
+	
   }
   
-  function getVideoId(){
-  return parseInt($("input:radio[name='videoSelection']:checked").val());
-}
-
-function getQuestionId(){
-  var questionNum = parseInt($('#iframe_working').val()) + 1;
-  return questionNum;
-}
-
-function getNumVideos(){
-  return parseInt(videos.length);
-}
-
+//function getVideoId(){
+//  return parseInt($("input:radio[name='videoSelection']:checked").val());
+//}
 
 function add_video(){
    document.getElementById("hidden_row").style.display = "table-row";	
@@ -43,7 +37,7 @@ function add_playlist(){
 
 function add_playlist_entry(url) {
   document.getElementById("hidden_row").style.display = "none";
-  var counter = videos.length + 1;
+  var counter = my_videos.length + 1;
   
   //if(counter <= 5) {
   
@@ -59,7 +53,8 @@ function add_playlist_entry(url) {
 
   //$('#playlist > tbody > tr').eq(counter-1).before(newRow);
   $("#video_playlist").append(newRow)
-  videos.push("");
+  my_videos.push(url);
+  alert(getNumVideos());
   // }
   // else{
     // alert("Maximum number of videos reached.");
