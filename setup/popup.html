@@ -38,7 +38,7 @@
     <td width="40%" align="center" style="padding-right: 25px;">
     <input placeholder="Behavior Name" class="form-control" align="center" id="behavior_label" type="text" />
     </td>
-    <td align="right" colspan="2"><input placeholder="Request/Question sent to workers" class="form-control" id="action_description" type="text" /></td>   
+    <td align="right" colspan="2"><input placeholder="Request/Question sent to workers" class="form-control" id="behavior_description" type="text" /></td>   
   </tr>
   </table>
   <table>
@@ -125,7 +125,7 @@
   <td style="width:225px; padding-right:25px;"><p>Length of each video segment</p></td>
   <td style="width:95px; padding-right:25px;"><input class="form-control" id="video_length" type="number" /></td>
   <td style="width:110px;">
-    <select class="form-control"> 
+    <select id="unit" class="form-control"> 
   <option selected="selected" disabled>Unit</option>
   <option value="seconds">Seconds</option>
   <option value="minutes">Minutes</option> </select>
@@ -134,11 +134,11 @@
       <tr>
   <td>Video Speed</td>
   <td colspan="2">
-    <select class="form-control"> <!--  <select class="form-control" style="width: 135px">-->
+    <select id="speed" class="form-control"> <!--  <select class="form-control" style="width: 135px">-->
   <option selected="selected" disabled>Speed</option>
-  <option value="minutes">2x</option>
-<option value="seconds">3x</option>
-<option value="seconds">4x</option> </select>
+  <option value="2">2x</option>
+<option value="3">3x</option>
+<option value="4">4x</option> </select>
 </td>
 
   </tr>
@@ -146,8 +146,8 @@
 <tr>
   <td>Repeatable</td>
 
-      <td><input type="radio" name="repeatable" value="yes" />Yes</td>
-      <td>   <input type="radio" name="repeatable" value="no" />No</td>
+      <td><input type="radio" name="repeatable" value="true" checked="checked" />Yes</td>
+      <td>   <input type="radio" name="repeatable" value="false" />No</td>
 
 
   </tr> 
@@ -156,11 +156,11 @@
         <tr>
   <td>Coding Format</td>
   <td colspan="2">
-    <select class="form-control"> <!--  <select class="form-control" style="width: 135px">-->
+    <select id="coding_format" class="form-control"> <!--  <select class="form-control" style="width: 135px">-->
   <option selected="selected" disabled>Format</option>
-  <option value="minutes">Interval</option>
-<option value="seconds">Occurrence</option>
-<option value="seconds">Whole Segment</option></select>
+  <option value="interval">Interval</option>
+<option value="occurrence">Occurrence</option>
+<option value="segment">Whole Segment</option></select>
 </td>
 
   </tr>
@@ -193,6 +193,15 @@
 </tbody>
 </table>
 
+<table>
+<tbody>
+<tr>
+<td>
+<input type="button" onclick="saveSetup()" class="btn btn-primary" value="Save" id="save_question" />
+</td>
+</tr>
+</tbody>
+</table>
 </form>
   </div> <!--end first col-->
   

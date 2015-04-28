@@ -97,8 +97,28 @@ function setupAdvanced(){
    self.close();
 }
 
+function getRadioButtonVal(radioButton) {
+for(var i = 0; i < radioButton.length; i++)
+   {
+      if(radioButton[i].checked)
+      {
+         return radioButton[i].value;
+      }
+   }
+   return "none";
+}
 
 function saveSetup() {
+
+   //get type of coding task
+   var selected_coding_task = getRadioButtonVal(document.forms[0].elements["coding_task"]);
+   //alert(selected_coding_task);
+   //variation stuff
+ 
+    //get type of coding task
+   var repeatable = getRadioButtonVal(document.forms[0].elements["repeatable"]);
+   //alert(repeatable);
+   //alert($('#coding_format').val());
   //alert("called function");
   //questionNum = top.window.opener.getQuestionId();
   //alert(top.window.opener.getVideoId());
@@ -116,7 +136,7 @@ function saveSetup() {
         // type: "POST",
         // async: false,
         // url: "php/addQuestionDb.php",
-        // data: {action: $('#action_label').val(), description: $('#action_description').val()},
+        // data: {behavior: $('#behavior_label').val(), description: $('#behavior_description').val(), coding_task: selected_coding_task, video_length: $('#video_length').val(), time_unit: $('#unit').val(), video_speed: $('#speed').val(), repeatable: repeatable, format: $('#coding_format').val()},
         // success: function() {
           // alert("added initial row to db");
         // },

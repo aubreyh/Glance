@@ -54,7 +54,6 @@ function add_playlist_entry(url) {
   //$('#playlist > tbody > tr').eq(counter-1).before(newRow);
   $("#video_playlist").append(newRow)
   my_videos.push(url);
-  alert(getNumVideos());
   // }
   // else{
     // alert("Maximum number of videos reached.");
