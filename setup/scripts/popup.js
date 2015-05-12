@@ -37,6 +37,11 @@ $('input:radio[name="coding_task"]').change(function(){
 	}
 });
 
+$('#video_length').change(function () { 
+var length = $('#video_length').val();
+document.getElementById("video_length_preview").innerHTML = length;
+document.getElementById("video_length_preview").style.display = "block";
+});
 
 $('select[name="video_selection"]').change(function(){
     //alert('all selected');
@@ -53,6 +58,43 @@ $('select[name="video_selection"]').change(function(){
 	}
     
 });
+
+//for popup preview
+$('#behavior_label').blur(function () { 
+var behavior = $('#behavior_label').val();
+document.getElementById("behavior_label_preview").innerHTML = behavior;
+document.getElementById("behavior_label_preview").style.display = "block";
+});
+
+$('#behavior_description').blur(function () { 
+var description = $('#behavior_description').val();
+document.getElementById("behavior_description_preview").innerHTML = description;
+document.getElementById("behavior_description_preview").style.display = "block";
+});
+
+$("input[name='repeatable']").change(function(e){
+    if($(this).val() == 'true') {
+      document.getElementById("repeat_icon").style.display = "block";
+    } 
+	else  {
+		document.getElementById("repeat_icon").style.display = "none";
+    }
+
+});
+
+$('select[name="select_speed"]').change(function(){
+    //alert('all selected');
+	var speed = $(this).val();
+    document.getElementById("speed_preview").innerHTML = speed + " speed";
+    //document.getElementById("speed_preview").style.display = "block";
+});
+
+$('select[name="time_unit"]').change(function(){
+    //alert('all selected');
+	var unit = $(this).val();
+    document.getElementById("time_unit_preview").innerHTML = unit + " segments";
+    document.getElementById("time_unit_preview").style.display = "block";
+});
 }); //end document ready
 
 
@@ -65,7 +107,7 @@ function increment_choices(type) {
   num_variations += 1;
   newRow = "<tr id='variation"+type+num_variations+"_row'>" +
   "<td>" +
-  "<input type='radio' name='category_variation' value='variation"+type+num_variations+"_selector'>Variation "+num_variations+" :" +
+  "<input type='radio' name='category_variation' value='variation"+type+num_variations+"_selector' disabled>Variation "+num_variations+" :" +
   "</td>" +
   
  "<td colspan='3'>" +
@@ -111,6 +153,7 @@ for(var i = 0; i < radioButton.length; i++)
 function saveSetup() {
 
    //get type of coding task
+   var behavior_name = $('#behavior_label').val();
    var selected_coding_task = getRadioButtonVal(document.forms[0].elements["coding_task"]);
    //alert(selected_coding_task);
    //variation stuff
@@ -136,7 +179,7 @@ function saveSetup() {
         // type: "POST",
         // async: false,
         // url: "php/addQuestionDb.php",
-        // data: {behavior: $('#behavior_label').val(), description: $('#behavior_description').val(), coding_task: selected_coding_task, video_length: $('#video_length').val(), time_unit: $('#unit').val(), video_speed: $('#speed').val(), repeatable: repeatable, format: $('#coding_format').val()},
+        // data: {behavior: behavior_name, description: $('#behavior_description').val(), coding_task: selected_coding_task, video_length: $('#video_length').val(), time_unit: $('#unit').val(), video_speed: $('#speed').val(), repeatable: repeatable, format: $('#coding_format').val()},
         // success: function() {
           // alert("added initial row to db");
         // },
@@ -145,7 +188,7 @@ function saveSetup() {
         // }
     // });
          
-   top.window.opener.addBar();
+   top.window.opener.addBar(behavior_name, selected_coding_task);
    self.close();
 }
 

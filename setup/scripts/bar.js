@@ -16,6 +16,24 @@ $(document).ready(function(){
   }); 
 
   populateUrlSpans();
+  
+  $(document).on("click", 'tr.header', function(){
+	  
+	var element_id = jQuery(this).attr("id");
+    var current_icon = "img_"+ element_id;
+    $(this).nextUntil('tr.header').css('display', function(i,v){
+		if(this.style.display === 'table-row'){
+			document.getElementById(current_icon).src = "images/glyphicons-369-collapse.png";
+			return 'none';
+		}
+		else {
+			document.getElementById(current_icon).src = "images/glyphicons-368-expand.png";
+			return 'table-row'
+		}
+        //return this.style.display === 'table-row' ? 'none' : 'table-row';
+		
+    });
+});
  
 });
 
@@ -104,7 +122,7 @@ console.log("Expanding bar...");
 
 }
 
-function addBar(){
+function addBar(behavior_name, coding_task){
 	//alert('called addBar')
 	var iframe  = '';
 	var height = 60;
@@ -113,20 +131,54 @@ function addBar(){
 	var label_value = '';
 		
 	iframe = '';
-		
+	
 	var content = '<li id="vbar_'+counter+'" class="thumbnail"><table width="40%" id="table_'+counter+'">\
-  <tr>\
-  <td colspan="3" width="100%" align="center"><span id="iframe_'+counter+'">'+iframe+'</span></td>\
+	 <tr class="header" id="bar'+counter+'"> \
+   <td><img id="img_bar'+counter+'" src="images/glyphicons-368-expand.png" alt="Collapse" class="cursor-pointer" /></td> \
+   <td>Behavior:'+behavior_name+'</td> \
+   <td>Coding task:'+coding_task+'</td> \
+   <td></td> \
+ </tr> \
+  <tr class="bar_data">\
+  <td colspan="4" width="40&" align="center"><span id="iframe_'+counter+'">'+iframe+'</span></td>\
   </tr>\
-  <tr>\
-  <td width="35%" height="50" align="left"><img class="icon-remove" src="images/remove_icon.png" onclick="remove_bar('+counter+')" />&nbsp&nbsp&nbsp&nbsp&nbsp<input placeholder="session" onKeyUp="refersh_content('+counter+',event)" class="left_text_width" align="center" id="'+counter+'_text" type="text" id="someid" value="'+label_value+'" /></td>\
-  <td width="50%" height="50" align="center"><input type="button" id="zoomBtn_'+counter+'" value="&#x25BC;"/></td>\
-  <td width="15%" height="50" align="right"><input type="button" onclick="render_new('+counter+',1)" class="btn btn-primary" value="Go" id="go_'+counter+'" /></td>\
+  <tr class="bar_data">\
+  <td></td> \
+  <td  height="50" align="left"><img class="icon-remove" src="images/remove_icon.png" onclick="remove_bar('+counter+')" />&nbsp&nbsp&nbsp&nbsp&nbsp<input placeholder="session" onKeyUp="refersh_content('+counter+',event)" class="left_text_width" align="center" id="'+counter+'_text" type="text" id="someid" value="'+label_value+'" /></td>\
+  <td height="50" align="center"><input type="button" id="zoomBtn_'+counter+'" value="&#x25BC;"/></td>\
+  <td  height="50" align="right"><input type="button" onclick="render_new('+counter+',1)" class="btn btn-primary" value="Go" id="go_'+counter+'" /></td>\
   </tr>\
-  <tr>\
-  <td width="20%" height="50" align="left">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="button" onclick="setup_question()" class="btn btn-info" value="Setup" id="setup_'+counter+'" /></td>\
+  <tr class="bar_data">\
+  <td></td> \
+  <td  height="50" align="left">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="button" onclick="setup_question()" class="btn btn-info" value="Setup" id="setup_'+counter+'" /></td>\
+  <td></td> \
+  <td></td> \
   </tr>\
   </table></li>';
+  
+//  	var content = "<table border='0'> \
+//  <tr class='header'> \
+  //  <td colspan='2'>Header</td> \
+ // </tr> \
+ // <tr class='bar_data'> \
+   // <td>data</td> \
+  //  <td>data</td> \
+ // </tr> \
+ // <tr class='bar_data'> \
+   // <td>data</td> \
+  //  <td>data</td> \
+//  </tr> \
+ //  <tr class='header'> \
+ //   <td colspan='2'>Header</td> \
+//  </tr> \
+//  <tr class='bar_data'> \
+//    <td>data</td> \
+//    <td>data</td> \
+//  </tr> \
+//  <tr class='bar_data'> \
+ //   <td>data</td> \
+ //   <td>data</td> \
+ // </tr> \ </table>";
 		
 	$('#iframe_working').val(counter);
 	

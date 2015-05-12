@@ -40,8 +40,7 @@ function add_playlist_entry(url) {
   var counter = my_videos.length + 1;
   
   //if(counter <= 5) {
-  
-  
+  //var returned = getYoutube(url);
   newRow = "<tr class='entry'>" +
   "<td><a href="+url+"></a></td>" +
   "<td style='height:60px'><img src='images/image.png' alt='Video Thumbnail' height='50' width='50'></td>" +
@@ -58,4 +57,33 @@ function add_playlist_entry(url) {
   // else{
     // alert("Maximum number of videos reached.");
   // }
+}
+
+function getYoutube(id) {
+    $.ajax({
+        type: "GET",
+        url: yt_url = 'https://www.googleapis.com/youtube/v3/videos?id=' + title + '&key=YOUR_API_KEY&format=5&max-results=1&v=2&alt=jsonc',
+        dataType: "jsonp",
+        success: function (response) {
+            if (response.data.items) {
+                $.each(response.data.items, function (i, data) {
+					
+                    var video_id = data.id;
+					alert(video_id);
+                    var video_title = data.title;
+					alert(video_title);
+                    var video_viewCount = data.viewCount;
+                    var video_frame = "<iframe width='600' height='385' src='http://www.youtube.com/embed/" + video_id + "' frameborder='0' type='text/html'></iframe>";
+                    var final_res = "<div id='title'>" + video_title + "</div><div>" + video_frame + "</div><div id='count'>" + video_viewCount + " Views</div>";
+                    //$("#result").html(final_res);
+					return video_title;
+                });
+
+
+            } else {
+                //$("#result").html("<div id='no'>No Video</div>");
+				return "no video";
+            }
+        }
+    });
 }

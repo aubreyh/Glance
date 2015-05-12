@@ -94,3 +94,11 @@ table.video_table td{
 #playlist li:hover{
     color:blue;                        
 }
+
+tr.bar_data {
+   display: table-row;
+}
+
+tr.header {
+    display: table-row;
+}

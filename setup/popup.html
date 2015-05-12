@@ -27,7 +27,7 @@
 <body> <!--onload="selectVideos()"-->
 <div class="page">
 <div class="page-center-container">
- <div id="firstCol" class="col-sm-6 col-md-6">
+ <div id="firstCol" class="col-sm-6 col-md-6" style="border:1px solid black;">
  <h3 align="center">Setup</h3>
 <form id="config" method="get" action="submitData">
 <table>
@@ -58,14 +58,14 @@
 
       <tr>
   <td style="padding-right:25px;"><input type="radio" name="coding_task" value="likert" />Likert Scale</td>
-    <td><img src="images/category.png" alt="category icon" style="width:30px;height:30px"></td>
+    <td><img src="images/likert.png" alt="category icon" style="width:30px;height:30px"></td>
     <td><h5 style="padding-left:25px;">:&nbsp;Judge the behavior on a scale.</h5></td>
   </tr>
   </table>
 
 
-<div id="category_options" style="margin-left:75px; border:1px solid black; display: none;">
-  <table id="variations_category">
+<div id="category_options" style="margin-left:75px; display: none;">
+  <table id="variations_category" frame="box" rules="none">
   <tr>
   <td><h5>Define variations of this behavior.</h5></td>
   <td><img src="images/glyphicons-192-circle-minus.png" alt="Add Manually" class="cursor-pointer" onClick="decrement_choices('category', 0);" />
@@ -83,7 +83,7 @@
   </div>
   
   <div id="likert_options" style="margin-left:75px; border:1px solid black; display: none;">
-  <table id="variations_likert">
+  <table id="variations_likert" frame="box" rules="none">
   <tr>
   <td><h5>Provide guidance for Likert scale.</h5></td>
   <td><img src="images/glyphicons-192-circle-minus.png" alt="Add Manually" class="cursor-pointer" onClick="decrement_choices('likert',2);" />
@@ -99,14 +99,14 @@
   
 <tr id='variationlikert1_row'>
 <td>
-<input type='radio' name='category_variation' value='variationlikert1_selector'>Variation 1 :</td>
+<input type='radio' name='category_variation' value='variationlikert1_selector' disabled>Variation 1 :</td>
 <td colspan='3'>
 <input placeholder='Description' class='form-control' id='variationlikert1_description' type='text' />
 </td>
 </tr>
 <tr id='variationlikert2_row'>
 <td>
-<input type='radio' name='category_variation' value='variationlikert2_selector'>Variation 2:</td>
+<input type='radio' name='category_variation' value='variationlikert2_selector' disabled>Variation 2:</td>
 <td colspan='3'>
 <input placeholder='Description' class='form-control' id='variationlikert2_description' type='text' />
 </td>
@@ -123,22 +123,22 @@
   </tr>
     <tr>
   <td style="width:225px; padding-right:25px;"><p>Length of each video segment</p></td>
-  <td style="width:95px; padding-right:25px;"><input class="form-control" id="video_length" type="number" /></td>
+  <td style="width:95px; padding-right:25px;"><input class="form-control" id="video_length" type="number" min="1" max="100"/></td>
   <td style="width:110px;">
-    <select id="unit" class="form-control"> 
+    <select id="unit" name="time_unit" class="form-control"> 
   <option selected="selected" disabled>Unit</option>
-  <option value="seconds">Seconds</option>
-  <option value="minutes">Minutes</option> </select>
+  <option value="second">Second(s)</option>
+  <option value="minute">Minute(s)</option> </select>
 </td>
   </tr>
       <tr>
   <td>Video Speed</td>
   <td colspan="2">
-    <select id="speed" class="form-control"> <!--  <select class="form-control" style="width: 135px">-->
-  <option selected="selected" disabled>Speed</option>
-  <option value="2">2x</option>
-<option value="3">3x</option>
-<option value="4">4x</option> </select>
+    <select id="speed" name="select_speed" class="form-control"> <!--  <select class="form-control" style="width: 135px">-->
+  <option value="normal" selected="selected">Normal</option>
+  <option value="2x">2x</option>
+<option value="3x">3x</option>
+<option value="4x">4x</option> </select>
 </td>
 
   </tr>
@@ -206,8 +206,44 @@
   </div> <!--end first col-->
   
   
-  <div id="secondCol" class="col-sm-4 col-md-4">
+  <div id="secondCol" class="col-sm-6 col-md-6" style="border:1px solid red;">
   <h3 align="center">Preview</h3>
+  <p>Mark the start and end of each behavior.</p>
+  <table>
+  <tr>
+  <td style="width:75px"><p><b>Behavior:</b></p></td>
+  <td><p id="behavior_label_preview" style="display: none;">[behavior_name]</p></td>
+  </tr>
+  </table>
+  <table>
+  <tr>
+  <td style="width:175px"><p><b>Description of behavior:</b></p></td>
+  <td><p id="behavior_description_preview" style="display: none;">[request]</p></td>
+  </tr>
+  </table>
+  <table width="100%">
+  <tbody>
+  <tr>
+  <td colspan="4" align="center"><img id="video_placeholder" src="images/video_placeholder.png" alt="video image" height="300" width="450"></td>
+  </tr>
+    <tr>
+  <td style="width:20px">
+  <img id="repeat_icon" src="images/glyphicons-86-repeat.png" alt="Repeatable" />
+  </td>
+  <td style="width:140px">
+  <p id="speed_preview">normal speed</p>
+  </td>
+  <td style="width:10px" align="right">
+  <p id="video_length_preview" style="display: none;">[video_length]</p>
+  </td>
+  <td style="width:55px" align="right">
+  <p id="time_unit_preview" style="display: none;">[video_time_unit]</p>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  
+
   </div> <!--end second col-->
   </div>
   </div>
