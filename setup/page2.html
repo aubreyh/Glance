@@ -1,34 +1,50 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<title>Setup</title>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-<link rel="stylesheet" type="text/css" href="css/popup.css">
-<script src="scripts/jquery1.9.js"></script>
-<script src="scripts/jquery_ui.js"></script>
-<script type="text/javascript" src="scripts/shared.js"></script>
-<script type="text/javascript" src="scripts/popup.js"></script>
-<script type="text/javascript" src="scripts/bar.js"></script>
-<link rel="stylesheet" href="css/pure-min.css">
-<link rel="stylesheet" href="../bootstrap-3.3.4-dist/css/bootstrap.css">
-<script src="../bootstrap-3.3.4-dist/js/bootstrap.js"></script>
-<script src="../bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
-<script src="../bootstrap-3.3.4-dist/js/npm.js"></script>
-<!--
-  <script src="vis_tools/scripts/segvis.js"></script>
-  <link rel="stylesheet" href="vis_tools/css/vis.css" />
-  <link rel="stylesheet" href="vis_tools/css/style.css" /> -->
-
+  <title>End-User Setup</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script src="scripts/bar.js"></script>
+  <script src="scripts/popup.js"></script>
+  <script src="scripts/shared.js"></script>
 </head>
+<body>
 
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Glance</a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav">
+        <li><a href="page1.html">Videos <br/>&nbsp;&nbsp;&nbsp;&nbsp;1</a></li>
+        <li class="active"><a href="page2.html">Task Design <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2</a></li>
+        <li><a href="page3.html">Dashboard<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-<body> <!--onload="selectVideos()"-->
-<div class="page">
-<div class="page-center-container">
- <div id="firstCol" class="col-sm-6 col-md-6" style="border:1px solid black;">
- <h3 align="center">Setup</h3>
+ <div id="behavior_list" class="col-sm-4 col-md-4">
+ <h3 align="center">Behavior</h3>
+  <div class="row marging-top">
+    <div  margin-top">
+      <form class="pure-form pure-form-aligned" onSubmit="return false">
+        <ul class="paddingnone" id="bars_maker">
+        </ul>
+        <input type="hidden" id="iframe_working" value="0" />
+        <input type="hidden" id="youtube_loaded" value="0" />
+      </form>
+    </div>
+  </div>
+ </div>
+
+ <div id="second" class="col-sm-4 col-md-4">
+ <div class="thumbnail">
+ <h3 align="center">Configure</h3>
 <form id="config" method="get" action="submitData">
 <table>
   <tr>
@@ -152,62 +168,19 @@
 
   </tr> 
   
-  
-        <tr>
-  <td>Coding Format</td>
-  <td colspan="2">
-    <select id="coding_format" class="form-control"> <!--  <select class="form-control" style="width: 135px">-->
-  <option selected="selected" disabled>Format</option>
-  <option value="interval">Interval</option>
-<option value="occurrence">Occurrence</option>
-<option value="segment">Whole Segment</option></select>
-</td>
-
-  </tr>
-</table>  
-  
-<table>
-<tbody>
 <tr>
-   <td>
-  <select name="video_selection" class="form-control"  align="right"> <!--  <select class="form-control" style="width: 135px">-->
-  <option selected="selected" disabled>&#x2751;</option>
-  <option value="all">All</option>
-<option value="none">None</option> </select>
-</td>
-</tr>
-<!--
-<tr>
-<td><input type='checkbox' name'video_checkboxes' value='video1'></td>
-<td><label>Video 1</label></td>
-</tr>
-<tr>
-<td><input type='checkbox' name'video_checkboxes' value='video2"'></td>
-<td><label>Video 2</label></td>
-</tr>
--->
-</tbody>
-</table>
-<table id="videos_popup">
-<tbody>
-</tbody>
-</table>
-
-<table>
-<tbody>
-<tr>
-<td>
+<td colspan="3" align="center">
 <input type="button" onclick="saveSetup()" class="btn btn-primary" value="Save" id="save_question" />
 </td>
 </tr>
-</tbody>
+
 </table>
 </form>
-  </div> <!--end first col-->
-  
-  
-  <div id="secondCol" class="col-sm-6 col-md-6" style="border:1px solid red;">
-  <h3 align="center">Task Preview</h3>
+ </div>
+ </div>
+  <div id="third" class="col-sm-4 col-md-4">
+ <div class="thumbnail">
+ <h3 align="center">Task Preview</h3>
   <p>Mark the start and end of each behavior.</p>
   <table>
   <tr>
@@ -224,7 +197,7 @@
   <table width="100%">
   <tbody>
   <tr>
-  <td colspan="4" align="center"><img id="video_placeholder" src="images/video_placeholder.png" alt="video image" height="300" width="450"></td>
+  <td colspan="4" align="center"><img id="video_placeholder" src="images/video_placeholder.png" alt="video image" height="200" width="300"></td>
   </tr>
     <tr>
   <td style="width:20px">
@@ -242,117 +215,18 @@
   </tr>
   </tbody>
   </table>
-  
+ </div>
+ </div>
 
-  </div> <!--end second col-->
-  </div>
-  </div>
-</body>
-</html>
-
-
-<!--OLD CODE-->
-<!--
-
-<body onload="selectVideos()">
-<div class="page">
-<h3 align="center">Setup</h3>
-<div class="page-center-container">
-  <div>
-
-<table style="margin-right:10px">
-  <tr>
-    <td height="50" width="15%"><strong>Action:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td width="10%" align="center">
-    <input placeholder="Label" class="form-control" align="center" id="action_label" type="text" />
-    </td>
-    <td align="right" colspan="4"><input placeholder="Description" class="form-control" style="width: 225px" id="action_description" type="text" /></td>   
-  </tr>
-  <tr>
-    <td><strong>Segment:</strong></td>
-    <td height="50">
-      <select id="segment_dropdown" class="form-control" style="width: 155px">
-        <option selected="selected" disabled>How to segment</option>
-        <option value="partition">Partition</option>
-        <option value="exist">Exist</option>
-        <option value="segmented">Segmented</option>
-      </select>
-    </td>
-  <td align="right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Type:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-  <td height="50" align="right">
-  <div>
-  <select class="form-control" style="width: 135px">
-  <option selected="selected" disabled>Select a type</option>
-  <option selected="selected" disabled>Select a type</option>
-  <option value="binary">Binary</option>
-  <option value="category">Category</option>
-  <option value="likert">Likert</option>
-</select>
 </div>
-</td>
-  </tr>
-  
-
-
-<tr>
-
-  <td height="50"><strong>Example:</strong></td>
-
-
-
-  <td><input id="exampleCheckbox" type="checkbox" onchange="show_hide('exampleCheckbox',['exampleButtons','exampleImage'])" name="example" value="example"><br></td>
-
-  </tr>
-  
-  
-  <tr>
-  <td>
-  <div id="exampleButtons" style="display: none;" align="right">
-  <form>
-  <input type="radio" name="example" value="image" checked>Image
-  <br>
-  <input type="radio" name="example" value="video">Video&nbsp&nbsp
-  </form> 
-  </div>
-  </td>
-  <td colspan="4" align="right">
-   <img id="exampleImage" src="images/smile.png" alt="Smiley face" height="85" width="135" style="display: none;"> 
-  </td>
-</tr>
-  
-
-  <tr>
-    <td colspan="4">
-      <strong>Apply to:</strong>
-      <br>
-      <br>
-  <div>
-  <table id="videos_popup" width="100%">
-     <tbody>
-     </tbody>
-  </table>
-  </div>
-  </td>
-  </tr>
- 
-  <tr>
-<td>
-<img id="videoImage" align="right" src="images/smile.png" alt="Smiley face" height="85" width="135" style="display: none;"> 
-</td>
-
-  </tr>
-    <tr>
-  <td colspan="2" width="20%" height="50" align="right">
-    <input type="button" onclick="saveSetup()" class="btn btn-primary" value="Save" id="save_question" />
-    </td>
-  <td colspan="2" height="50" align="right">
-    <input type="button" onclick="setupAdvanced()" class="btn btn-link" value="Show Advanced Options" id="adv_" />
-  </td>
-  </tr>
-</table>
-  </div>
-  </div>
-  </div>
+<div style="width: 98%";>
+<div style="float:right">
+<input type="button" onclick="add_video()" class="btn btn-danger" value="Next" id="page2_3" />
+<script type="text/javascript">
+    document.getElementById("page2_3").onclick = function () {
+        location.href = "page3.html";
+    };
+</script>
+</div>
 </body>
 </html>
--->

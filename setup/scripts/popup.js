@@ -21,7 +21,7 @@ function selectVideos() {
 }
 
 $( document ).ready(function() {
-	selectVideos();
+	//selectVideos();
 $('input:radio[name="coding_task"]').change(function(){
     if($(this).val() === 'category'){
        document.getElementById("category_options").style.display = "table-row";	
@@ -151,15 +151,17 @@ for(var i = 0; i < radioButton.length; i++)
 }
 
 function saveSetup() {
-
+	
    //get type of coding task
    var behavior_name = $('#behavior_label').val();
-   var selected_coding_task = getRadioButtonVal(document.forms[0].elements["coding_task"]);
+   var selected_coding_task = getRadioButtonVal(document.forms[1].elements["coding_task"]);
+   //alert(selected_coding_task);
    //alert(selected_coding_task);
    //variation stuff
  
     //get type of coding task
-   var repeatable = getRadioButtonVal(document.forms[0].elements["repeatable"]);
+   //var repeatable = getRadioButtonVal(document.forms[0].elements["repeatable"]);
+   //alert(repeatable);
    //alert(repeatable);
    //alert($('#coding_format').val());
   //alert("called function");
@@ -188,8 +190,9 @@ function saveSetup() {
         // }
     // });
          
-   top.window.opener.addBar(behavior_name, selected_coding_task);
-   self.close();
+   //top.window.opener.addBar(behavior_name, selected_coding_task);
+   addBar(behavior_name, selected_coding_task);
+   //self.close();
 }
 
 function show_hide(id, elements) {

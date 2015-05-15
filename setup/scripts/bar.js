@@ -123,7 +123,6 @@ console.log("Expanding bar...");
 }
 
 function addBar(behavior_name, coding_task){
-	//alert('called addBar')
 	var iframe  = '';
 	var height = 60;
 	var value = '';
@@ -131,29 +130,14 @@ function addBar(behavior_name, coding_task){
 	var label_value = '';
 		
 	iframe = '';
-	
-	var content = '<li id="vbar_'+counter+'" class="thumbnail"><table width="40%" id="table_'+counter+'">\
+	//   <td><img id="img_bar'+counter+'" src="images/glyphicons-368-expand.png" alt="Collapse" class="cursor-pointer" /></td> \
+	var content = '<li id="vbar_'+counter+'" class="thumbnail"><table width="100%" id="table_'+counter+'">\
 	 <tr class="header" id="bar'+counter+'"> \
-   <td><img id="img_bar'+counter+'" src="images/glyphicons-368-expand.png" alt="Collapse" class="cursor-pointer" /></td> \
-   <td>Behavior:'+behavior_name+'</td> \
-   <td>Coding task:'+coding_task+'</td> \
-   <td></td> \
+   <td>Behavior: '+behavior_name+'</td> \
+   <td>Coding task: '+coding_task+'</td> \
+   <td  height="50" align="left"><input type="button" onclick="setup_question()" class="btn btn-info" value="Edit" id="setup_'+counter+'" /></td>\
+   <td height="50" align="right"><img class="icon-remove" src="images/remove_icon.png" onclick="remove_bar('+counter+')" /></td> \
  </tr> \
-  <tr class="bar_data">\
-  <td colspan="4" width="40&" align="center"><span id="iframe_'+counter+'">'+iframe+'</span></td>\
-  </tr>\
-  <tr class="bar_data">\
-  <td></td> \
-  <td  height="50" align="left"><img class="icon-remove" src="images/remove_icon.png" onclick="remove_bar('+counter+')" />&nbsp&nbsp&nbsp&nbsp&nbsp<input placeholder="session" onKeyUp="refersh_content('+counter+',event)" class="left_text_width" align="center" id="'+counter+'_text" type="text" id="someid" value="'+label_value+'" /></td>\
-  <td height="50" align="center"><input type="button" id="zoomBtn_'+counter+'" value="&#x25BC;"/></td>\
-  <td  height="50" align="right"><input type="button" onclick="render_new('+counter+',1)" class="btn btn-primary" value="Go" id="go_'+counter+'" /></td>\
-  </tr>\
-  <tr class="bar_data">\
-  <td></td> \
-  <td  height="50" align="left">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="button" onclick="setup_question()" class="btn btn-info" value="Setup" id="setup_'+counter+'" /></td>\
-  <td></td> \
-  <td></td> \
-  </tr>\
   </table></li>';
   
 //  	var content = "<table border='0'> \
@@ -182,18 +166,8 @@ function addBar(behavior_name, coding_task){
 		
 	$('#iframe_working').val(counter);
 	
-	$('#bars_maker').append(content);
+	$('#behavior_list').append(content);
 	
-	$('#zoomBtn_' + counter).click( function() {
-		zoomcontent(counter);
-		loadBarData(counter);
-	});
-	
-	if($('#vis_tool_iframe'+counter).length){
-		$('#zoomBtn_'+counter).show();	
-	}else{
-		$('#zoomBtn_'+counter).hide();
-	}
 
 	return counter;
 	
