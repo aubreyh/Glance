@@ -35,18 +35,20 @@ function add_playlist(){
    alert('add playlist');
 }
 
-function add_playlist_entry(url) {
+function add_playlist_entry(url, videoId) {
   document.getElementById("hidden_row").style.display = "none";
   var counter = my_videos.length + 1;
   
   //if(counter <= 5) {
-  //var returned = getYoutube(url);
+  var result = getYoutube(videoId);
+  var title = result[0];
+  var thumbnail = result[1];
   newRow = "<tr class='entry'>" +
   "<td><a href="+url+"></a></td>" +
-  "<td style='height:60px'><img src='images/image.png' alt='Video Thumbnail' height='50' width='50'></td>" +
+  "<td style='height:60px'><img src='"+thumbnail+"' alt='Video Thumbnail' height='50' width='50'></td>" +
   "<td>"+
-  "<span class='name'>"+url+"</span><br/>" +
-  "<span class='subtext'>Description</span>" +
+  "<span class='name'>"+title+"</span><br/>" +
+  "<span class='subtext'>"+url+"</span>" +
   "</td>" +
   "</tr>";
 
@@ -60,30 +62,19 @@ function add_playlist_entry(url) {
 }
 
 function getYoutube(id) {
-    $.ajax({
+	var result = new Array();
+	//alert(getResponse(id));
+	var responseTextObject = jQuery.parseJSON(getResponse(id));
+	var videoTitle = responseTextObject.items[0].snippet.title;
+	result.push(videoTitle);
+	var thumbnail = responseTextObject.items[0].snippet.thumbnails.default.url;
+	result.push(thumbnail);
+	return result;
+}
+function getResponse(id) {
+    return $.ajax({
         type: "GET",
-        url: yt_url = 'https://www.googleapis.com/youtube/v3/videos?id=' + title + '&key=YOUR_API_KEY&format=5&max-results=1&v=2&alt=jsonc',
-        dataType: "jsonp",
-        success: function (response) {
-            if (response.data.items) {
-                $.each(response.data.items, function (i, data) {
-					
-                    var video_id = data.id;
-					alert(video_id);
-                    var video_title = data.title;
-					alert(video_title);
-                    var video_viewCount = data.viewCount;
-                    var video_frame = "<iframe width='600' height='385' src='http://www.youtube.com/embed/" + video_id + "' frameborder='0' type='text/html'></iframe>";
-                    var final_res = "<div id='title'>" + video_title + "</div><div>" + video_frame + "</div><div id='count'>" + video_viewCount + " Views</div>";
-                    //$("#result").html(final_res);
-					return video_title;
-                });
-
-
-            } else {
-                //$("#result").html("<div id='no'>No Video</div>");
-				return "no video";
-            }
-        }
-    });
+        url: 'https://www.googleapis.com/youtube/v3/videos?part=snippet&id='+id+'&key=AIzaSyB-jycGVjnFwDvlUxQpoRE4fOZrmGYUBpg',
+        async: false,
+    }).responseText;
 }

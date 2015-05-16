@@ -147,7 +147,7 @@
             return false;
           }
 		 
-          add_playlist_entry(url);
+          add_playlist_entry(url, videoId);
 		  loadVideo(videoId);
         });
 
